@@ -34,12 +34,6 @@
 ;
 ; & may be used between any two keys to combine them into a custom hotkey
 
-
-; for YENKEE keyboard (which doesnt have " ` ~ " key)
-;--------------------------------------
-Esc::`
-
-
 ; CapsLock Initializer
 ;--------------------------------------
 SetCapsLockState, AlwaysOff
