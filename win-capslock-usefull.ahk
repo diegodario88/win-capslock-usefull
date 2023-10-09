@@ -38,23 +38,20 @@
 ;--------------------------------------
 SetCapsLockState, AlwaysOff
 
+; CapsLock = Esc
+;--------------------------------------
+CapsLock::Send, {ESC}
 
 ; CapsLock Switcher
 ;--------------------------------------
 CapsLock & t::
-GetKeyState, CapsLockState, CapsLock, T
+GetKeyState, CapsLockState, CapsLock, T     
 if CapsLockState = D
     SetCapsLockState, AlwaysOff
 else
     SetCapsLockState, AlwaysOn
 KeyWait, ``
 return
-
-
-; CapsLock = Esc
-;--------------------------------------
-CapsLock::Send, {ESC}
-
 
 ; CapsLock Direction Navigator
 ; CapsLock + h |  Left
@@ -376,6 +373,11 @@ CapsLock & n::
         Send, +{Home}
         return
     }
+    ; CapsLock + Win
+    if GetKeyState("LWin") = 1 {
+        Send, ^#{Left}
+        return
+    }
     Send, {Home}
     return
 
@@ -396,6 +398,11 @@ CapsLock & m::
     ; CapsLock + Shift
     if GetKeyState("Shift"){
         Send, +{End}
+        return
+    }
+    ; CapsLock + Win
+    if GetKeyState("LWin") = 1 {
+        Send, ^#{Right}
         return
     }
     Send, {End}
@@ -445,3 +452,8 @@ CapsLock & =::
 CapsLock & r:: Send, {Volume_Mute}
 CapsLock & w:: Send, {Volume_Down}
 CapsLock & e:: Send, {Volume_Up}
+
+; CapsLock General Controller
+;--------------------------------------
+CapsLock & Space:: Send, ^{Space}
+CapsLock & Enter:: Send, {F13}
